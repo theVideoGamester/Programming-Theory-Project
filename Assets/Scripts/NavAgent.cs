@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Parent class of Player and Enemy. Controls Combat and Movement capabilities
 public abstract class NavAgent : MonoBehaviour
 {
     protected NavMeshAgent agent;
@@ -15,12 +16,10 @@ public abstract class NavAgent : MonoBehaviour
     protected GameObject target;
     protected HealthBar healthBar;
     protected NavAgent targetAgent;
+    protected AudioSource audioSource;
 
-    public GameObject healthDisplay;
-    public virtual void takeDamage(int damage)
-    {
-        hp -= damage;
-    }
+    [HideInInspector] public GameObject healthDisplay;
+    public AudioClip hurtSound;
 
     protected enum states
     {
@@ -39,7 +38,11 @@ public abstract class NavAgent : MonoBehaviour
         myState = states.idle;
         hp = maxHP;
         healthBar = gameObject.GetComponentInChildren<HealthBar>();
+
+        //Abstraction
         healthBar.SetMaxHealth(maxHP);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected bool endMovement()
@@ -63,6 +66,7 @@ public abstract class NavAgent : MonoBehaviour
 
     protected void Attack()
     {
+        //Abstraction
         targetAgent.TakeDamage(myWeapon.damage);
     }
 
@@ -78,11 +82,19 @@ public abstract class NavAgent : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
+
+        //Abstraction
         healthBar.SetHealth(hp);
+        PlayHurtSound();
 
         if (hp <=0)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void PlayHurtSound()
+    {
+        audioSource.PlayOneShot(hurtSound,1);
     }
 }

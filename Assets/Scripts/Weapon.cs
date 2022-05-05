@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Parent Class. Contains Stats
 public class Weapon : MonoBehaviour
 {
-    [HideInInspector] public int damage;
-    [HideInInspector] public string weaponName;
-    [HideInInspector] public float range;
+    //Encapsulate
+    protected int _damage;
+    public int damage { get { return _damage; } }
+
+    protected string _weaponName;
+    public string weaponName { get { return _weaponName; } }
+
+    protected float _range;
+    public float range { get { return _range; } }
 
     private void Start()
     {
         initializeWeapon();
     }
 
+    //Polymorphism and Abstraction
     protected virtual void initializeWeapon()
     {
-        damage = 0;
-        weaponName = "Error: Item not assigned";
-        range = 0f;
+        _damage = 0;
+        _weaponName = "Error: Item not assigned";
+        _range = 0f;
     }
 }

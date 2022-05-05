@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Lots of Inheritance
 public class Player : NavAgent
 {
     public bool noisy = false;
@@ -11,18 +12,21 @@ public class Player : NavAgent
     {
         maxHP = 20;
         myWeapon = gameObject.AddComponent<Sword>();
+        //Abstraction
         setAgent();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Abstraction
         CheckRightMouseClick();
         RunStateMachine();
     }
 
     bool CheckRightMouseClick()
     {
+        //Abstraction
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -30,6 +34,7 @@ public class Player : NavAgent
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 130))
             {
+                //Abstraction
                 startMovement(hit.point);
             }
             else
@@ -76,6 +81,7 @@ public class Player : NavAgent
                 myState = states.move;
                 break;
             case states.move:
+                //Abstraction
                 if (endMovement())
                 {
                     myState = states.idle;
@@ -86,6 +92,7 @@ public class Player : NavAgent
                 {
                     myState = states.idle;
                 }
+                //Abstraction
                 else if (CheckTargetDistance())
                 {
                     myState = states.attack;
@@ -95,6 +102,7 @@ public class Player : NavAgent
             case states.attack:
                 noisy = true;
                 inCombat = true;
+                //Abstraction
                 endMovement();
                 transform.LookAt(target.transform);
                 if (!IsInvoking()) {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Lots of Inheritance
 public class Enemy : NavAgent
 {
     [SerializeField] private float visionDistance = 35f;
@@ -13,8 +14,11 @@ public class Enemy : NavAgent
     void Start()
     {
         maxHP = 5;
+
+        //Abstraction
         setAgent();
         startMovement(transform.position);
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerTransform = player.transform;
         myWeapon = gameObject.GetComponent<Weapon>();
@@ -24,6 +28,7 @@ public class Enemy : NavAgent
     // Update is called once per frame
     void Update()
     {
+        //Abstraction
         endMovement();
         RunStateMachine();
     }
@@ -35,6 +40,7 @@ public class Enemy : NavAgent
             case states.idle:
             case states.beginMove:
             case states.move:
+                //Abstraction
                 if (Detection())
                 {
                     //Debug.DrawLine(transform.position, player.transform.position, Color.red);
@@ -61,11 +67,14 @@ public class Enemy : NavAgent
                 }
                 else
                 {
+                    //Abstraction
                     startMovement(playerTransform.position);
                 }
                 break;
             case states.attack:
+                //Abstraction
                 endMovement();
+
                 transform.LookAt(target.transform);
                 targetAgent = target.GetComponent<NavAgent>();
                 InvokeRepeating("Attack", .2f, attackSpeed);
@@ -87,13 +96,14 @@ public class Enemy : NavAgent
     {
         float distance = visionDistance;
 
-        if (player.noisy)
+        if (player.noisy)   
         {
             distance = hearingDistance;
         }
 
         if (Vector3.Distance(transform.position,playerTransform.position) <= distance) 
         {
+            //Abstraction
             if (CanSeePlayer() && IsLineOfSite(distance))
             {
                 return true;

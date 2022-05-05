@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Lots of Inheritance
 public class Sword : Weapon
 {
+    //Polyorphism
     protected override void initializeWeapon()
     {
-        damage = 1;
-        weaponName = "Sword";
-        range = 5f;
+        _damage = 1;
+        _weaponName = "Sword";
+        _range = 5f;
     }
 }
 
