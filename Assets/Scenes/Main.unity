@@ -437,7 +437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180667441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.7, z: 0}
   m_LocalScale: {x: 2.9431622, y: 2.9431622, z: 2.9431622}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -479,10 +479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1312812f1854fdd4bb2f3102bd893944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDisplay: {fileID: 196153543395072883, guid: b5d0fc7e18d1db44783f5a806c8d1ee4, type: 3}
-  hurtSound: {fileID: 8300000, guid: 430a890fb607d471db897c36240711fa, type: 3}
-  noisy: 0
-  inCombat: 0
 --- !u!208 &180667448
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1451,11 +1447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fadfd0eab514754da78e3dfac479194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDisplay: {fileID: 0}
-  hurtSound: {fileID: 8300000, guid: 7ec5ecf96d2fd4aae950ead923cf9ca0, type: 3}
-  visionDistance: 25
-  hearingDistance: 60
-  visionHeight: 3
 --- !u!114 &1521650529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,11 +1709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fadfd0eab514754da78e3dfac479194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDisplay: {fileID: 0}
-  hurtSound: {fileID: 8300000, guid: 7ec5ecf96d2fd4aae950ead923cf9ca0, type: 3}
-  visionDistance: 35
-  hearingDistance: 60
-  visionHeight: 3
 --- !u!114 &1739608484
 MonoBehaviour:
   m_ObjectHideFlags: 0

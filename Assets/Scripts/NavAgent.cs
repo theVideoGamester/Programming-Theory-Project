@@ -6,30 +6,23 @@ using UnityEngine.AI;
 //Parent class of Player and Enemy. Controls Combat and Movement capabilities
 public abstract class NavAgent : MonoBehaviour
 {
+    /*
     protected NavMeshAgent agent;
-    protected NavMeshObstacle obstacle;
+    
     protected states myState;
+    
+    protected GameObject target;
+    
+    protected NavAgent targetAgent;
     protected int hp;
     protected int maxHP;
     protected Weapon myWeapon;
     protected float attackSpeed = 2f;
-    protected GameObject target;
     protected HealthBar healthBar;
-    protected NavAgent targetAgent;
     protected AudioSource audioSource;
-
-    [HideInInspector] public GameObject healthDisplay;
     public AudioClip hurtSound;
 
-    protected enum states
-    {
-        idle,
-        beginMove,
-        move,
-        attack,
-        moveToRange,
-        combat
-    }
+    
 
     protected void setAgent()
     {
@@ -97,4 +90,59 @@ public abstract class NavAgent : MonoBehaviour
     {
         audioSource.PlayOneShot(hurtSound,1);
     }
+    */
+
+    /*
+    #region detection
+    private bool Detection()
+    {
+        float distance = visionDistance;
+
+        if (player.noisy)
+        {
+            distance = hearingDistance;
+        }
+
+        if (Vector3.Distance(transform.position, playerTransform.position) <= distance)
+        {
+            //Abstraction
+            if (CanSeePlayer() && IsLineOfSite(distance))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool CanSeePlayer()
+    {
+        if (Mathf.Abs(transform.position.y - playerTransform.position.y) > visionHeight)
+        {
+            return false;
+        }
+        Vector3 directionOfPlayer = transform.position - playerTransform.position;
+        float angle = Vector3.Angle(transform.forward, directionOfPlayer);
+        if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool IsLineOfSite(float distance)
+    {
+        RaycastHit hit;
+        Vector3 directionOfPlayer = playerTransform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, directionOfPlayer, out hit, distance))
+        {
+            if (hit.transform.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    #endregion
+    */
 }

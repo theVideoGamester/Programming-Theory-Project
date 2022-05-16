@@ -5,9 +5,7 @@ using UnityEngine;
 //Lots of Inheritance
 public class Enemy : NavAgent
 {
-    [SerializeField] private float visionDistance = 35f;
-    [SerializeField] private float hearingDistance = 60f;
-    [SerializeField] private float visionHeight = 3f;
+    /*
     private Player player;
     private Transform playerTransform;
     // Start is called before the first frame update
@@ -89,57 +87,5 @@ public class Enemy : NavAgent
                 break;
         }
     }
-    
-    
-    #region detection
-    private bool Detection()
-    {
-        float distance = visionDistance;
-
-        if (player.noisy)   
-        {
-            distance = hearingDistance;
-        }
-
-        if (Vector3.Distance(transform.position,playerTransform.position) <= distance) 
-        {
-            //Abstraction
-            if (CanSeePlayer() && IsLineOfSite(distance))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    private bool CanSeePlayer()
-    {
-        if (Mathf.Abs(transform.position.y - playerTransform.position.y) > visionHeight)
-        {
-            return false;
-        }
-        Vector3 directionOfPlayer = transform.position - playerTransform.position;
-        float angle = Vector3.Angle(transform.forward, directionOfPlayer);
-        if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool IsLineOfSite(float distance)
-    {
-        RaycastHit hit;
-        Vector3 directionOfPlayer = playerTransform.position - transform.position;
-
-        if (Physics.Raycast(transform.position, directionOfPlayer, out hit, distance))
-        {
-            if (hit.transform.CompareTag("Player"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    #endregion
+    */
 }
