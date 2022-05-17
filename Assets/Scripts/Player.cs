@@ -1,28 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 //Lots of Inheritance
-public class Player : MonoBehaviour
+public class Player : CombatAgent
 {
-    public StateMachine myState;
-    public Weapon weapon;
-    public bool noisy = false;
-    private NavMeshAgent agent;
-    private NavMeshObstacle obstacle;
-    
-
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        obstacle = GetComponent<NavMeshObstacle>();
         weapon = gameObject.AddComponent<Sword>();
         myState = new Initialize(agent, obstacle, weapon);
     }
 
-    private void LateUpdate()
+    public override void Attack()
     {
-        myState = myState.Process();
+        base.Attack();
+        Collider[] hitColliders = Physics.OverlapSphere(targetAgent.transform.position, 30f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject.CompareTag("Enemy"))
+            {
+                hitCollider.SendMessage("Alert");
+            }
+        }
+    }
+
+    protected override void DestroyTarget()
+    {
+        base.DestroyTarget();
+        myState.nextState = new Idle(agent, obstacle, weapon);
+        myState.stage = StateMachine.EVENT.EXIT;
     }
 }

@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Parent Class. Contains Stats
 public class Weapon : MonoBehaviour
 {
-    //Encapsulate
     protected int _damage;
     public int damage { get { return _damage; } }
 

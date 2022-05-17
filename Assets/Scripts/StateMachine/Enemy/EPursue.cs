@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Pursue : StateMachine
+public class EPursue : StateMachine
 {
-    public Pursue(NavMeshAgent agent, NavMeshObstacle obstacle, Weapon weapon, GameObject target) : base(agent, obstacle, weapon)
+    public EPursue(NavMeshAgent agent, NavMeshObstacle obstacle, Weapon weapon, GameObject target) : base(agent, obstacle, weapon)
     {
         currentState = STATE.PURSUE;
         this.target = target;
@@ -21,17 +21,12 @@ public class Pursue : StateMachine
     public override void Update()
     {
         Chase();
-        if (Vector3.Distance(agent.transform.position,dest) <= weapon.range)
+        if (!agent.hasPath)
         {
             stage = EVENT.EXIT;
-            nextState = new Attack(agent,obstacle,weapon,target);   
+            nextState = new EAttack(agent, obstacle, weapon, target);
             agent.ResetPath();
         }
-        if (CheckLeftMouseClick())
-        {
-            stage = EVENT.EXIT;
-        }
-        
     }
 
     public override void Exit()

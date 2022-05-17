@@ -7,7 +7,7 @@ public class StateMachine
 {
     public enum STATE
     {
-        INITIALIZE,IDLE, PATROL, ATTACK, PURSUE, MOVING
+        INITIALIZE,IDLE, PATROL, MOVING, ATTACK, PURSUE
     }
 
     public enum EVENT
@@ -16,19 +16,19 @@ public class StateMachine
     }
 
     public STATE currentState;
-    protected EVENT stage;
+    public EVENT stage;
+    public StateMachine nextState;
+
     protected GameObject target;
     protected Transform targetTransform;
-    protected StateMachine nextState;
     protected NavMeshAgent agent;
     protected NavMeshObstacle obstacle;
     protected Vector3 dest;
     protected Weapon weapon;
 
 
-    [SerializeField] private float visionDistance = 35f;
-    [SerializeField] private float hearingDistance = 60f;
-    [SerializeField] private float visionHeight = 3f;
+    //[SerializeField] private float visionDistance = 35f;
+    //[SerializeField] private float visionHeight = 3f;
 
     public StateMachine(NavMeshAgent agent, NavMeshObstacle obstacle, Weapon weapon)
     {
@@ -59,7 +59,7 @@ public class StateMachine
         return this;
     }
 
-    protected bool CheckLeftMouseClick()
+    protected virtual bool CheckLeftMouseClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -82,5 +82,26 @@ public class StateMachine
             }
         }
         return false;
+    }
+
+    protected void Chase()
+    {
+        Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
+        Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
+        Vector3 dir = pos - targPos;
+        float offset = weapon.range + 2f;
+        dest = target.transform.position + dir.normalized * offset;
+        agent.SetDestination(dest);
+    }
+
+    protected bool CheckDistanceToTarg()
+    {
+        Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
+        Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
+        Vector3 dir = pos - targPos;
+        float offset = weapon.range + 2f;
+        dest = target.transform.position + dir.normalized * offset;
+
+        return Vector3.Distance(agent.transform.position, dest) > weapon.range + 1f;
     }
 }

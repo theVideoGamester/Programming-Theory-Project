@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Attack : StateMachine
+public class EAttack : StateMachine
 {
     CombatAgent combatAgent;
     float rotationSpd = 10f;
-    public Attack(NavMeshAgent agent, NavMeshObstacle obstacle, Weapon weapon, GameObject target) : base(agent, obstacle, weapon)
+    public EAttack(NavMeshAgent agent, NavMeshObstacle obstacle, Weapon weapon, GameObject target) : base(agent, obstacle, weapon)
     {
         currentState = STATE.ATTACK;
         combatAgent = agent.gameObject.GetComponent<CombatAgent>();
@@ -18,14 +18,14 @@ public class Attack : StateMachine
         Vector3 dir = pos - targPos;
         float offset = weapon.range + 2f;
         dest = target.transform.position + dir.normalized * offset;
-        combatAgent.InvokeRepeating("Attack", combatAgent.attackSpeed, combatAgent.attackSpeed);
+        
     }
 
     public override void Enter()
     {
         base.Enter();
         obstacle.enabled = true;
-        
+        combatAgent.InvokeRepeating("Attack", combatAgent.attackSpeed, combatAgent.attackSpeed);
     }
 
     public override void Update()
@@ -33,17 +33,21 @@ public class Attack : StateMachine
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3(target.transform.position.x, agent.transform.position.y, target.transform.position.z) - new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z));
         agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, targetRotation, rotationSpd * Time.deltaTime);
 
-        if (CheckDistanceToTarg())
+        if (target == null && !agent.hasPath)
         {
-            nextState = new Pursue(agent, obstacle, weapon, target);
+            Debug.Log(target);
+            nextState = new EIdle(agent, obstacle, weapon);
             stage = EVENT.EXIT;
             combatAgent.CancelInvoke();
             return;
         }
-        if (CheckLeftMouseClick())
+
+        if (CheckDistanceToTarg())
         {
+            nextState = new EPursue(agent, obstacle, weapon, target);
             stage = EVENT.EXIT;
             combatAgent.CancelInvoke();
+            return;
         }
     }
 

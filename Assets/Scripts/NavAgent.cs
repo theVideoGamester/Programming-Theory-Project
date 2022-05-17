@@ -113,21 +113,7 @@ public abstract class NavAgent : MonoBehaviour
         }
         return false;
     }
-    private bool CanSeePlayer()
-    {
-        if (Mathf.Abs(transform.position.y - playerTransform.position.y) > visionHeight)
-        {
-            return false;
-        }
-        Vector3 directionOfPlayer = transform.position - playerTransform.position;
-        float angle = Vector3.Angle(transform.forward, directionOfPlayer);
-        if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    
 
     private bool IsLineOfSite(float distance)
     {
