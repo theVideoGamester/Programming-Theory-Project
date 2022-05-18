@@ -21,7 +21,7 @@ public class Pursue : StateMachine
     public override void Update()
     {
         Chase();
-        if (Vector3.Distance(agent.transform.position,dest) <= weapon.range)
+        if (Vector3.Distance(agent.transform.position,dest) <= weapon.weapon.range)
         {
             stage = EVENT.EXIT;
             nextState = new Attack(agent,obstacle,weapon,target);   

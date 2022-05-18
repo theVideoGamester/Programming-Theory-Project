@@ -45,17 +45,15 @@ public class CombatAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Dice die = new Dice(1,DICE.D6);
-            int value = die.RollDice();
+            Debug.Log(myState.currentState);
         }
         myState = myState.Process();
     }
 
     public virtual void Attack()
     {
-        if (targetAgent == null) { return; }
         audioSource.PlayOneShot(damageSound);
-        targetAgent.TakeDamage(weapon.damage);
+        targetAgent.TakeDamage(weapon.Damage());
         if (targetAgent.hp <= 0)
         {
             Destroy(targetAgent.gameObject);

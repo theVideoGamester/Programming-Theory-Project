@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 180667446}
   - component: {fileID: 180667448}
   - component: {fileID: 180667447}
+  - component: {fileID: 180667450}
   - component: {fileID: 180667449}
   m_Layer: 0
   m_Name: Player
@@ -479,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1312812f1854fdd4bb2f3102bd893944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 180667450}
   attackSpeed: 1
   damageSound: {fileID: 8300000, guid: 430a890fb607d471db897c36240711fa, type: 3}
   combatAgent: {fileID: 0}
@@ -598,6 +599,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &180667450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180667441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94e3be3cdcb7af41aad6191bebf0923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &195212495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1313,9 +1326,10 @@ GameObject:
   - component: {fileID: 1521650524}
   - component: {fileID: 1521650523}
   - component: {fileID: 1521650522}
+  - component: {fileID: 1521650531}
+  - component: {fileID: 1521650532}
   - component: {fileID: 1521650526}
   - component: {fileID: 1521650527}
-  - component: {fileID: 1521650531}
   - component: {fileID: 1521650530}
   m_Layer: 0
   m_Name: RangedEnemy
@@ -1546,10 +1560,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1521650521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d253b5eee4c55f548bb7ed17e448c8f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fadfd0eab514754da78e3dfac479194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 1521650532}
   attackSpeed: 1
   damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
   combatAgent: {fileID: 0}
@@ -1559,6 +1573,18 @@ MonoBehaviour:
   player: {fileID: 180667441}
   canHear: 1
   visionDistance: 5
+--- !u!114 &1521650532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521650521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9dcb2b82c31c14a9261e65c9b7d187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739608475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,9 +1597,10 @@ GameObject:
   - component: {fileID: 1739608479}
   - component: {fileID: 1739608478}
   - component: {fileID: 1739608477}
+  - component: {fileID: 1739608486}
+  - component: {fileID: 1739608487}
   - component: {fileID: 1739608476}
   - component: {fileID: 1739608481}
-  - component: {fileID: 1739608486}
   - component: {fileID: 1739608485}
   m_Layer: 0
   m_Name: MeleeEnemy
@@ -1805,10 +1832,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1739608475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50fbbc5edc46e324ba3b90845ab377c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fadfd0eab514754da78e3dfac479194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 1739608487}
   attackSpeed: 1
   damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
   combatAgent: {fileID: 0}
@@ -1818,6 +1845,18 @@ MonoBehaviour:
   player: {fileID: 180667441}
   canHear: 1
   visionDistance: 20
+--- !u!114 &1739608487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739608475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0361c8eef2ada4386becf0f33ce23b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1989007893
 GameObject:
   m_ObjectHideFlags: 0

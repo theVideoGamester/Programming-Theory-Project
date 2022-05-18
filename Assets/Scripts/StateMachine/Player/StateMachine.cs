@@ -86,12 +86,15 @@ public class StateMachine
 
     protected void Chase()
     {
-        Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
-        Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
-        Vector3 dir = pos - targPos;
-        float offset = weapon.range + 2f;
-        dest = target.transform.position + dir.normalized * offset;
-        agent.SetDestination(dest);
+        if (target != null) 
+        {
+            Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
+            Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
+            Vector3 dir = pos - targPos;
+            float offset = weapon.weapon.range + 2f;
+            dest = target.transform.position + dir.normalized * offset;
+            agent.SetDestination(dest);
+        }
     }
 
     protected bool CheckDistanceToTarg()
@@ -99,9 +102,9 @@ public class StateMachine
         Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
         Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
         Vector3 dir = pos - targPos;
-        float offset = weapon.range + 2f;
+        float offset = weapon.weapon.range + 2f;
         dest = target.transform.position + dir.normalized * offset;
 
-        return Vector3.Distance(agent.transform.position, dest) > weapon.range + 1f;
+        return Vector3.Distance(agent.transform.position, dest) > weapon.weapon.range + 1f;
     }
 }

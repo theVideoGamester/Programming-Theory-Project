@@ -8,12 +8,17 @@ public class Player : CombatAgent
 {
     private void Start()
     {
-        weapon = gameObject.AddComponent<Sword>();
         myState = new Initialize(agent, obstacle, weapon);
     }
 
     public override void Attack()
     {
+        if (targetAgent == null)
+        {
+            myState.nextState = new Idle(agent, obstacle, weapon);
+            myState.stage = StateMachine.EVENT.EXIT;
+            return;
+        }
         base.Attack();
         Collider[] hitColliders = Physics.OverlapSphere(targetAgent.transform.position, 30f);
         foreach (var hitCollider in hitColliders)

@@ -27,8 +27,6 @@ public struct Dice
             total += Random.Range(0, (int)die) + 1;
         }
 
-        Debug.Log(total);
-
         return total;
     }
 }

@@ -21,7 +21,7 @@ public class EPursue : StateMachine
     public override void Update()
     {
         Chase();
-        if (!agent.hasPath)
+        if (target != null && !agent.hasPath)
         {
             stage = EVENT.EXIT;
             nextState = new EAttack(agent, obstacle, weapon, target);

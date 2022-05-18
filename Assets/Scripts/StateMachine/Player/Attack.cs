@@ -16,7 +16,7 @@ public class Attack : StateMachine
         Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
         Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
         Vector3 dir = pos - targPos;
-        float offset = weapon.range + 2f;
+        float offset = weapon.weapon.range + 2f;
         dest = target.transform.position + dir.normalized * offset;
         combatAgent.InvokeRepeating("Attack", combatAgent.attackSpeed, combatAgent.attackSpeed);
     }

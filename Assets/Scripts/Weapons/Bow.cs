@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Bow : Weapon
 {
-    protected override void initializeWeapon()
+    Bow() : base("Bow", new Dice(1, DICE.D4), 20f)
     {
-        _damage = 1;
-        _weaponName = "Bow";
-        _range = 20f;
+
+    }
+
+    Bow(string name, Dice dice, float range) : base(name, dice, range)
+    {
+
     }
 }

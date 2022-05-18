@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    //Polyorphism
-    protected override void initializeWeapon()
+    Sword() : base("Sword", new Dice(1, DICE.D6), 2f)
     {
-        _damage = 5;
-        _weaponName = "Sword";
-        _range = 2f;
+
+    }
+
+    Sword(string name, Dice dice, float range):base(name, dice, range)
+    {
+
     }
 }

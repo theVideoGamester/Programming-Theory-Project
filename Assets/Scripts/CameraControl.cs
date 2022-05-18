@@ -15,14 +15,16 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 pos = target.gameObject.transform.position;
-        transform.position = pos;
+        if (target != null) {
+            Vector3 pos = target.gameObject.transform.position;
+            transform.position = pos;
 
-        transform.Rotate(0f,Input.GetAxis("Horizontal") * -rotateSpeed,0f);
-        cam.transform.position += new Vector3(0f,Input.GetAxis("Vertical")*-zoomSpeed,0f);
-        clampCamera();
-        
-        cam.transform.LookAt(this.transform);
+            transform.Rotate(0f, Input.GetAxis("Horizontal") * -rotateSpeed, 0f);
+            cam.transform.position += new Vector3(0f, Input.GetAxis("Vertical") * -zoomSpeed, 0f);
+            clampCamera();
+
+            cam.transform.LookAt(this.transform);
+        }
     }
 
     void clampCamera()

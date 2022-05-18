@@ -16,7 +16,7 @@ public class EAttack : StateMachine
         Vector3 pos = new Vector3(agent.transform.position.x, 10, agent.transform.position.z);
         Vector3 targPos = new Vector3(target.transform.position.x, 10, target.transform.position.z); ;
         Vector3 dir = pos - targPos;
-        float offset = weapon.range + 2f;
+        float offset = weapon.weapon.range + 2f;
         dest = target.transform.position + dir.normalized * offset;
         
     }
@@ -30,10 +30,8 @@ public class EAttack : StateMachine
 
     public override void Update()
     {
-        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(target.transform.position.x, agent.transform.position.y, target.transform.position.z) - new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z));
-        agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, targetRotation, rotationSpd * Time.deltaTime);
 
-        if (target == null && !agent.hasPath)
+        if (target == null)
         {
             Debug.Log(target);
             nextState = new EIdle(agent, obstacle, weapon);
@@ -41,6 +39,11 @@ public class EAttack : StateMachine
             combatAgent.CancelInvoke();
             return;
         }
+
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(target.transform.position.x, agent.transform.position.y, target.transform.position.z) - new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z));
+        agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, targetRotation, rotationSpd * Time.deltaTime);
+
+        
 
         if (CheckDistanceToTarg())
         {

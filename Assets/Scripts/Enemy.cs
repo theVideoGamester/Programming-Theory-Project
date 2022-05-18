@@ -13,6 +13,11 @@ public class Enemy : CombatAgent
     [SerializeField]
     float visionDistance = 30f;
 
+    private void Start()
+    {
+        myState = new EInitialize(agent, obstacle, weapon);
+    }
+
     private void Alert()
     {
         if (canHear && myState.currentState < StateMachine.STATE.ATTACK) 
@@ -21,22 +26,14 @@ public class Enemy : CombatAgent
             myState.nextState = new EPursue(agent, obstacle, weapon, player);
         }
     }
-
+   
     private void Update()
     {
-        
-        if (myState.currentState < StateMachine.STATE.ATTACK && IsLineOfSite(visionDistance) && CanSeePlayer())
+        if (player != null && myState.currentState < StateMachine.STATE.ATTACK && IsLineOfSite(visionDistance) && CanSeePlayer())
         {
             myState.nextState = new EPursue(agent,obstacle,weapon,player);
             myState.stage = StateMachine.EVENT.EXIT;
         }
-    }
-
-    protected override void DestroyTarget()
-    {
-        base.DestroyTarget();
-        myState.nextState = new Idle(agent, obstacle, weapon);
-        myState.stage = StateMachine.EVENT.EXIT;
     }
 
     private bool CanSeePlayer()
@@ -65,5 +62,22 @@ public class Enemy : CombatAgent
             }
         }
         return false;
+    }
+
+    protected override void DestroyTarget()
+    {
+        base.DestroyTarget();
+        myState.nextState = new EIdle(agent, obstacle, weapon);
+        myState.stage = StateMachine.EVENT.EXIT;
+    }
+    public override void Attack()
+    {
+        if (targetAgent == null)
+        {
+            myState.nextState = new EIdle(agent, obstacle, weapon);
+        myState.stage = StateMachine.EVENT.EXIT;
+            return;
+        }
+        base.Attack();
     }
 }
