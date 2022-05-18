@@ -34,6 +34,7 @@ public class CombatAgent : MonoBehaviour
         combatAgent = GetComponent<CombatAgent>();
         audioSource = GetComponent<AudioSource>();
         healthBar = GetComponentInChildren<HealthBar>();
+        
 
         if (maxHP == 0) { maxHP = 10; }
         if (hp == 0) { hp = maxHP; }
@@ -44,7 +45,8 @@ public class CombatAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log(weapon.weaponName);
+            Dice die = new Dice(1,DICE.D6);
+            int value = die.RollDice();
         }
         myState = myState.Process();
     }

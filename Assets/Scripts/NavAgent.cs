@@ -115,20 +115,7 @@ public abstract class NavAgent : MonoBehaviour
     }
     
 
-    private bool IsLineOfSite(float distance)
-    {
-        RaycastHit hit;
-        Vector3 directionOfPlayer = playerTransform.position - transform.position;
-
-        if (Physics.Raycast(transform.position, directionOfPlayer, out hit, distance))
-        {
-            if (hit.transform.CompareTag("Player"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+   
     #endregion
     */
 }
