@@ -385,6 +385,7 @@ MonoBehaviour:
   soundAgent:
     damageSound: {fileID: 8300000, guid: 430a890fb607d471db897c36240711fa, type: 3}
     missSound: {fileID: 8300000, guid: 9151e716690bbf54ba63690e505ada6f, type: 3}
+    deathSound: {fileID: 8300000, guid: 78b04e036008131419e8b694620393b0, type: 3}
   blinder: {fileID: 1352347244}
 --- !u!208 &180667448
 NavMeshObstacle:
@@ -1142,6 +1143,7 @@ MonoBehaviour:
   soundAgent:
     damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
     missSound: {fileID: 8300000, guid: bb1cfa996dc0e374d8609aed9e7e531c, type: 3}
+    deathSound: {fileID: 8300000, guid: 78b04e036008131419e8b694620393b0, type: 3}
   player: {fileID: 180667441}
   canHear: 1
   visionDistance: 20
@@ -2398,6 +2400,7 @@ MonoBehaviour:
   soundAgent:
     damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
     missSound: {fileID: 8300000, guid: bb1cfa996dc0e374d8609aed9e7e531c, type: 3}
+    deathSound: {fileID: 8300000, guid: 78b04e036008131419e8b694620393b0, type: 3}
   player: {fileID: 180667441}
   canHear: 1
   visionDistance: 20

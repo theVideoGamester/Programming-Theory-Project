@@ -39,8 +39,8 @@ public class CombatAgent : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         obstacle = GetComponent<NavMeshObstacle>();
         combatAgent = GetComponent<CombatAgent>();
-        soundAgent = new SoundAgent(GetComponent<AudioSource>(),soundAgent.damageSound,soundAgent.missSound);
         healthBar = GetComponentInChildren<HealthBar>();
+        soundAgent.audioSource = GetComponent<AudioSource>();
 
         stats.initializeValues();
         equipment.InitArmor(gameObject);
@@ -63,9 +63,10 @@ public class CombatAgent : MonoBehaviour
 
     public virtual void Attack()
     {
-        targetAgent.TakeDamage(equipment.weapon.Damage(),d20.RollDice(), stats.athleticismBonus);
+        targetAgent.TakeDamage(equipment.weapon.Damage(),d20.RollDice(), stats.athleticismBonus, soundAgent.missSound);
         if (targetAgent.hp <= 0)
         {
+            soundAgent.Died(targetAgent.soundAgent.deathSound);
             Destroy(targetAgent.gameObject);
             CancelInvoke();
             DestroyTarget();
@@ -73,7 +74,7 @@ public class CombatAgent : MonoBehaviour
 
     }
 
-    public virtual void TakeDamage(int damage, int roll, int bonus)
+    public virtual void TakeDamage(int damage, int roll, int bonus, AudioClip miss)
     {
         if (roll + bonus >= ac) 
         {
@@ -83,8 +84,8 @@ public class CombatAgent : MonoBehaviour
         }
         else
         {
-            soundAgent.Missed();
-            Debug.Log("Miss: " + ac + " - (" + roll + " + " + bonus + ") = " + (ac - (roll + bonus)));
+            soundAgent.Missed(miss);
+            //Debug.Log("Miss: " + ac + " - (" + roll + " + " + bonus + ") = " + (ac - (roll + bonus)));
         }
     }
 

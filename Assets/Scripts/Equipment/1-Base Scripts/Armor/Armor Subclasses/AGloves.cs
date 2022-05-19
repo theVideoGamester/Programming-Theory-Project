@@ -6,6 +6,6 @@ public class AGloves : Armor
 {
     public AGloves(string armorName, int ac) : base(armorName, ac)
     {
-
+        
     }
 }
