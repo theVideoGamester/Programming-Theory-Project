@@ -6,11 +6,17 @@ using UnityEngine;
 public class StatBlock
 {
     //HARDINESS, ATHLETICISM, INTELLECT, WILL, CHARISMA, GRACE
+    [Range(0,20)]
     public int hardiness;
+    [Range(0, 20)]
     public int athleticism;
+    [Range(0, 20)]
     public int intellect;
+    [Range(0, 20)]
     public int will;
+    [Range(0, 20)]
     public int charisma;
+    [Range(0, 20)]
     public int grace;
 
     [HideInInspector]
