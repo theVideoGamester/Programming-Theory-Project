@@ -1476,7 +1476,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1109985196}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1009023325
 MonoBehaviour:
@@ -1490,6 +1490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7448438695f8140a5b30420c64dfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor:
+    armorName: Boots
+    ac: 1
 --- !u!114 &1009023326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +1505,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082488ea609e7aa49923a1fd4ac851f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor:
+    armorName: Leather Pants
+    ac: 2
 --- !u!114 &1009023327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1514,6 +1520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62c1f02a237c5b4887aac6b2ef9a9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor:
+    armorName: Leather Gloves
+    ac: 1
 --- !u!114 &1009023328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,6 +1535,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faee875a7db726448912667a895d4d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor:
+    armorName: Leather Tunic
+    ac: 2
 --- !u!114 &1009023329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,6 +1550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ebffab42412ecc448b80837b1cdaef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor:
+    armorName: Leather Cap
+    ac: 1
 --- !u!224 &1010349380 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 196153543395072887, guid: b5d0fc7e18d1db44783f5a806c8d1ee4, type: 3}
@@ -1577,6 +1592,117 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1096020571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1096020572}
+  - component: {fileID: 1096020577}
+  - component: {fileID: 1096020576}
+  - component: {fileID: 1096020575}
+  - component: {fileID: 1096020574}
+  - component: {fileID: 1096020573}
+  m_Layer: 0
+  m_Name: Naked
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1096020572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096020571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109985196}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1096020573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096020571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c735d6ff09d105142bdd528370d9a04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor:
+    armorName: Bare Footed
+    ac: 0
+--- !u!114 &1096020574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096020571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102beab6a9686d447a7cdd971d9323e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor:
+    armorName: Bare Bottomed
+    ac: 0
+--- !u!114 &1096020575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096020571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9733e39606cb91a4099579301384a2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor:
+    armorName: Bare Handed
+    ac: 0
+--- !u!114 &1096020576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096020571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d9bfcac138cfa4cab818b14289cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor:
+    armorName: Bare Chested
+    ac: 0
+--- !u!114 &1096020577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096020571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e03928e06af13408337fe11e0d1e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor:
+    armorName: Bare Headed
+    ac: 0
 --- !u!1 &1109985195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,6 +1731,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1096020572}
   - {fileID: 1009023324}
   m_Father: {fileID: 1956778965}
   m_RootOrder: 1
