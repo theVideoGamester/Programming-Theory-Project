@@ -359,6 +359,11 @@ GameObject:
   - component: {fileID: 180667448}
   - component: {fileID: 180667447}
   - component: {fileID: 180667450}
+  - component: {fileID: 180667452}
+  - component: {fileID: 180667451}
+  - component: {fileID: 180667454}
+  - component: {fileID: 180667453}
+  - component: {fileID: 180667455}
   - component: {fileID: 180667449}
   m_Layer: 0
   m_Name: Player
@@ -480,13 +485,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1312812f1854fdd4bb2f3102bd893944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 180667450}
-  attackSpeed: 1
-  damageSound: {fileID: 8300000, guid: 430a890fb607d471db897c36240711fa, type: 3}
   combatAgent: {fileID: 0}
   targetAgent: {fileID: 0}
   maxHP: 20
   hp: 0
+  attackSpeed: 1
+  equipment:
+    weapon: {fileID: 180667450}
+    helmet: {fileID: 180667454}
+    chest: {fileID: 180667451}
+    gloves: {fileID: 180667452}
+    pants: {fileID: 180667453}
+    shoes: {fileID: 180667455}
   stats:
     hardiness: 0
     athleticism: 0
@@ -494,6 +504,16 @@ MonoBehaviour:
     will: 0
     charisma: 0
     grace: 0
+    hardinessBonus: 0
+    athleticismBonus: 0
+    intellectBonus: 0
+    willBonus: 0
+    charismaBonus: 0
+    graceBonus: 0
+  soundAgent:
+    damageSound: {fileID: 8300000, guid: 430a890fb607d471db897c36240711fa, type: 3}
+    missSound: {fileID: 8300000, guid: 9151e716690bbf54ba63690e505ada6f, type: 3}
+  blinder: {fileID: 1352347244}
 --- !u!208 &180667448
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -616,6 +636,66 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f94e3be3cdcb7af41aad6191bebf0923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180667451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180667441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faee875a7db726448912667a895d4d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180667452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180667441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62c1f02a237c5b4887aac6b2ef9a9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180667453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180667441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082488ea609e7aa49923a1fd4ac851f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180667454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180667441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ebffab42412ecc448b80837b1cdaef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180667455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180667441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7448438695f8140a5b30420c64dfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &195212495
@@ -880,7 +960,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 32.400963
+  field of view: 32
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -909,7 +989,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 65.6, z: -28.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1352347245}
   m_Father: {fileID: 1161852353}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 63.147, y: 0, z: 0}
@@ -1223,6 +1304,89 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 196153543395072887, guid: b5d0fc7e18d1db44783f5a806c8d1ee4, type: 3}
   m_PrefabInstance: {fileID: 1301979102}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1352347244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1352347245}
+  - component: {fileID: 1352347248}
+  - component: {fileID: 1352347247}
+  m_Layer: 0
+  m_Name: Blind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1352347245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352347244}
+  m_LocalRotation: {x: -0.7468561, y: -0, z: -0, w: 0.66498566}
+  m_LocalPosition: {x: 0, y: 0.17, z: 1.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -96.638, y: 0, z: 0}
+--- !u!23 &1352347247
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352347244}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b7d0eb2c4091fed4395a84deb54e280e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1352347248
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352347244}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1428520524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,13 +1734,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fadfd0eab514754da78e3dfac479194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1521650532}
-  attackSpeed: 1
-  damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
   combatAgent: {fileID: 0}
   targetAgent: {fileID: 0}
   maxHP: 0
   hp: 0
+  attackSpeed: 1
+  equipment:
+    weapon: {fileID: 1521650532}
+    helmet: {fileID: 0}
+    chest: {fileID: 0}
+    gloves: {fileID: 0}
+    pants: {fileID: 0}
+    shoes: {fileID: 0}
   stats:
     hardiness: 0
     athleticism: 0
@@ -1584,6 +1753,15 @@ MonoBehaviour:
     will: 0
     charisma: 0
     grace: 0
+    hardinessBonus: 0
+    athleticismBonus: 0
+    intellectBonus: 0
+    willBonus: 0
+    charismaBonus: 0
+    graceBonus: 0
+  soundAgent:
+    damageSound: {fileID: 0}
+    missSound: {fileID: 0}
   player: {fileID: 180667441}
   canHear: 1
   visionDistance: 5
@@ -1849,13 +2027,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fadfd0eab514754da78e3dfac479194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1739608487}
-  attackSpeed: 1
-  damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
   combatAgent: {fileID: 0}
   targetAgent: {fileID: 0}
   maxHP: 0
   hp: 0
+  attackSpeed: 1
+  equipment:
+    weapon: {fileID: 1739608487}
+    helmet: {fileID: 0}
+    chest: {fileID: 0}
+    gloves: {fileID: 0}
+    pants: {fileID: 0}
+    shoes: {fileID: 0}
   stats:
     hardiness: 0
     athleticism: 0
@@ -1863,6 +2046,15 @@ MonoBehaviour:
     will: 0
     charisma: 0
     grace: 0
+    hardinessBonus: 0
+    athleticismBonus: 0
+    intellectBonus: 0
+    willBonus: 0
+    charismaBonus: 0
+    graceBonus: 0
+  soundAgent:
+    damageSound: {fileID: 8300000, guid: 6148a3565030f4ad4bf1d52a57fc3c7f, type: 3}
+    missSound: {fileID: 8300000, guid: 9151e716690bbf54ba63690e505ada6f, type: 3}
   player: {fileID: 180667441}
   canHear: 1
   visionDistance: 20

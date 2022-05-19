@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct StatBlock
+public class StatBlock
 {
     //HARDINESS, ATHLETICISM, INTELLECT, WILL, CHARISMA, GRACE
     public int hardiness;
@@ -12,6 +12,19 @@ public struct StatBlock
     public int will;
     public int charisma;
     public int grace;
+
+    [HideInInspector]
+    public int hardinessBonus;
+    [HideInInspector]
+    public int athleticismBonus;
+    [HideInInspector]
+    public int intellectBonus;
+    [HideInInspector]
+    public int willBonus;
+    [HideInInspector]
+    public int charismaBonus;
+    [HideInInspector]
+    public int graceBonus;
 
     public void initializeValues()
     {
@@ -22,5 +35,12 @@ public struct StatBlock
         if (will == 0) { will = def; }
         if (charisma == 0) { charisma = def; }
         if (grace == 0) { grace = def; }
+
+        hardinessBonus = hardiness - def;
+        athleticismBonus = athleticism - def;
+        intellectBonus = intellect - def;
+        willBonus = will - def;
+        charismaBonus = charisma - def;
+        graceBonus = grace - def;
     }
 }

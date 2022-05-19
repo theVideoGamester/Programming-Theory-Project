@@ -6,9 +6,7 @@ using UnityEngine.AI;
 public class CombatAgent : MonoBehaviour
 {
     public StateMachine myState;
-    public Weapon weapon;
-    public float attackSpeed = 1f;
-    public AudioClip damageSound;
+    
  
     [HideInInspector]
     public CombatAgent combatAgent;
@@ -17,15 +15,22 @@ public class CombatAgent : MonoBehaviour
 
     protected NavMeshAgent agent;
     protected NavMeshObstacle obstacle;
-    protected AudioSource audioSource;
+
+    
     protected HealthBar healthBar;
+    protected int ac;
+    protected Dice d20 = new Dice(1,DICE.D20);
 
     [SerializeField]
     protected int maxHP;
     [SerializeField]
     protected int hp;
+    public float attackSpeed = 1f;
 
+    public Equipment equipment;
     public StatBlock stats;
+    [SerializeField]
+    protected SoundAgent soundAgent;
 
 
 
@@ -34,12 +39,15 @@ public class CombatAgent : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         obstacle = GetComponent<NavMeshObstacle>();
         combatAgent = GetComponent<CombatAgent>();
-        audioSource = GetComponent<AudioSource>();
+        soundAgent = new SoundAgent(GetComponent<AudioSource>(),soundAgent.damageSound,soundAgent.missSound);
         healthBar = GetComponentInChildren<HealthBar>();
 
         stats.initializeValues();
+        equipment.InitArmor(gameObject);
+        ac = equipment.GetAC();
 
         if (maxHP == 0) { maxHP = 10; }
+        maxHP += stats.hardinessBonus;
         if (hp == 0) { hp = maxHP; }
 
         healthBar.SetMaxHealth(maxHP, hp);
@@ -48,15 +56,14 @@ public class CombatAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log(myState.currentState);
+            
         }
         myState = myState.Process();
     }
 
     public virtual void Attack()
     {
-        audioSource.PlayOneShot(damageSound);
-        targetAgent.TakeDamage(weapon.Damage());
+        targetAgent.TakeDamage(equipment.weapon.Damage(),d20.RollDice(), stats.athleticismBonus);
         if (targetAgent.hp <= 0)
         {
             Destroy(targetAgent.gameObject);
@@ -66,10 +73,19 @@ public class CombatAgent : MonoBehaviour
 
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, int roll, int bonus)
     {
-        hp -= damage;
-        healthBar.SetHealth(hp);
+        if (roll + bonus >= ac) 
+        {
+            soundAgent.Damaged();
+            hp -= damage;
+            healthBar.SetHealth(hp);
+        }
+        else
+        {
+            soundAgent.Missed();
+            Debug.Log("Miss: " + ac + " - (" + roll + " + " + bonus + ") = " + (ac - (roll + bonus)));
+        }
     }
 
     protected virtual void DestroyTarget()

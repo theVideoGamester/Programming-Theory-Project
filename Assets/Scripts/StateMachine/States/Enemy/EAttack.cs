@@ -33,7 +33,6 @@ public class EAttack : StateMachine
 
         if (target == null)
         {
-            Debug.Log(target);
             nextState = new EIdle(agent, obstacle, weapon);
             stage = EVENT.EXIT;
             combatAgent.CancelInvoke();

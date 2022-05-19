@@ -15,7 +15,7 @@ public class Enemy : CombatAgent
 
     private void Start()
     {
-        myState = new EInitialize(agent, obstacle, weapon);
+        myState = new EInitialize(agent, obstacle, equipment.weapon);
     }
 
     private void Alert()
@@ -23,7 +23,7 @@ public class Enemy : CombatAgent
         if (canHear && myState.currentState < STATE.ATTACK) 
         {
             myState.stage = StateMachine.EVENT.EXIT;
-            myState.nextState = new EPursue(agent, obstacle, weapon, player);
+            myState.nextState = new EPursue(agent, obstacle, equipment.weapon, player);
         }
     }
    
@@ -31,7 +31,7 @@ public class Enemy : CombatAgent
     {
         if (player != null && myState.currentState < STATE.ATTACK && IsLineOfSite(visionDistance) && CanSeePlayer())
         {
-            myState.nextState = new EPursue(agent,obstacle,weapon,player);
+            myState.nextState = new EPursue(agent,obstacle, equipment.weapon,player);
             myState.stage = StateMachine.EVENT.EXIT;
         }
     }
@@ -67,14 +67,14 @@ public class Enemy : CombatAgent
     protected override void DestroyTarget()
     {
         base.DestroyTarget();
-        myState.nextState = new EIdle(agent, obstacle, weapon);
+        myState.nextState = new EIdle(agent, obstacle, equipment.weapon);
         myState.stage = StateMachine.EVENT.EXIT;
     }
     public override void Attack()
     {
         if (targetAgent == null)
         {
-            myState.nextState = new EIdle(agent, obstacle, weapon);
+            myState.nextState = new EIdle(agent, obstacle, equipment.weapon);
         myState.stage = StateMachine.EVENT.EXIT;
             return;
         }

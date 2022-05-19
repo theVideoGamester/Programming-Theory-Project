@@ -4,10 +4,10 @@ using UnityEngine;
 
 
 
-public struct Dice
+public class Dice
 {
-    public static DICE die;
-    public static int dieCount;
+    public DICE die;
+    public int dieCount;
 
     public Dice(int _dieCount, DICE _die)
     {
