@@ -20,7 +20,7 @@ public class Enemy : CombatAgent
 
     private void Alert()
     {
-        if (canHear && myState.currentState < StateMachine.STATE.ATTACK) 
+        if (canHear && myState.currentState < STATE.ATTACK) 
         {
             myState.stage = StateMachine.EVENT.EXIT;
             myState.nextState = new EPursue(agent, obstacle, weapon, player);
@@ -29,7 +29,7 @@ public class Enemy : CombatAgent
    
     private void Update()
     {
-        if (player != null && myState.currentState < StateMachine.STATE.ATTACK && IsLineOfSite(visionDistance) && CanSeePlayer())
+        if (player != null && myState.currentState < STATE.ATTACK && IsLineOfSite(visionDistance) && CanSeePlayer())
         {
             myState.nextState = new EPursue(agent,obstacle,weapon,player);
             myState.stage = StateMachine.EVENT.EXIT;

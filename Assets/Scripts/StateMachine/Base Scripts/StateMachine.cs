@@ -5,11 +5,6 @@ using UnityEngine.AI;
 
 public class StateMachine
 {
-    public enum STATE
-    {
-        INITIALIZE,IDLE, PATROL, MOVING, ATTACK, PURSUE
-    }
-
     public enum EVENT
     {
         ENTER, UPDATE, EXIT
@@ -25,10 +20,6 @@ public class StateMachine
     protected NavMeshObstacle obstacle;
     protected Vector3 dest;
     protected Weapon weapon;
-
-
-    //[SerializeField] private float visionDistance = 35f;
-    //[SerializeField] private float visionHeight = 3f;
 
     public StateMachine(NavMeshAgent agent, NavMeshObstacle obstacle, Weapon weapon)
     {

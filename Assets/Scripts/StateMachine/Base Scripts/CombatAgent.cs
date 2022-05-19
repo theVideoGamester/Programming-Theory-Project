@@ -9,7 +9,7 @@ public class CombatAgent : MonoBehaviour
     public Weapon weapon;
     public float attackSpeed = 1f;
     public AudioClip damageSound;
-
+ 
     [HideInInspector]
     public CombatAgent combatAgent;
     [HideInInspector]
@@ -25,6 +25,8 @@ public class CombatAgent : MonoBehaviour
     [SerializeField]
     protected int hp;
 
+    public StatBlock stats;
+
 
 
     private void Awake()
@@ -34,7 +36,8 @@ public class CombatAgent : MonoBehaviour
         combatAgent = GetComponent<CombatAgent>();
         audioSource = GetComponent<AudioSource>();
         healthBar = GetComponentInChildren<HealthBar>();
-        
+
+        stats.initializeValues();
 
         if (maxHP == 0) { maxHP = 10; }
         if (hp == 0) { hp = maxHP; }
